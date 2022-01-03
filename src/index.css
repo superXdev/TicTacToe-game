@@ -8,9 +8,17 @@
 	font-size: 2rem;
 }
 
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
 .Square:hover {
 	cursor: pointer;
-	border: 1px solid red;
+	border: 1px solid blue;
 }
 
 .Board {
@@ -25,7 +33,7 @@
 }
 
 .Board h1 {
-	color: green;
+	color: blue;
 }
 
 .Board h3, .Board ol {
