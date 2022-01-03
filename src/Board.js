@@ -31,6 +31,15 @@ const calculateWinner = (squares) => {
 	return ''
 }
 
+const isBoardIsFull = (squares) => {
+	for(let i = 0; i < squares.length; i++) {
+		if(squares[i] === '' && squares.length === 9) {
+			return false
+		}
+	}
+	return true
+}
+
 class Board extends Component {
 	state = {
 		squares: ['', '', '', '', '', '', '', '', ''],
@@ -71,7 +80,7 @@ class Board extends Component {
 
 	handleReset = () => {
 		this.setState({
-			squares: [],
+			squares: ['', '', '', '', '', '', '', '', ''],
 			isXTurn: true,
 			histories: []
 		})
@@ -81,12 +90,17 @@ class Board extends Component {
 		const { squares } = this.state
 
 		const winner = calculateWinner(this.state.squares)
-
+		let resultWin = ''
 		
+		if(isBoardIsFull(this.state.squares) && !winner) {
+			resultWin = 'Draw'
+		} else if(winner) {
+			resultWin = `The winner is ${winner}`
+		}
 
 		return(
 			<div className="Board">
-				<h1>{(winner) ? `The winner is ${winner}` : ''}</h1>
+				<h1>{resultWin}</h1>
 				<h2>Next turn: {(this.state.isXTurn) ? 'X' : 'O'}</h2>
 				<div className="row">
 					<Square value={squares[0]} onClick={this.handleClick(0)} />
